@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+	<div th:replace="~{commons :: head}"></div>
+    <title>Итоги дня</title>
+</head>
+<body>
+	<div th:replace="~{commons :: nav}"></div>
+	
+<section class="exercise-list">	
+<form th:action="'/result/save/'+${id}" method="POST">
+
+    <div class="container my-2">
+	    <div class="card">
+		    <div class="row">
+			    <div class="card-body col">
+			    	<h2 class="text-center"> Упражнения </h2>
+			        <div th:switch="${listExercise}" class="container my-5">			            
+			            <div class="col-md-12">
+			                <h2 th:case="null"> Записей не найдено </h2>
+			                <div th:case="*">
+			                    <table class="table table-striped table-responsive-md">
+			                        <thead>
+			                            <tr>
+			                                <th> Тип </th>
+			                                <th> Название </th>
+			                                <th> Инструкция </th>
+			                                <th> Повторений </th>
+			                                <th> Отдых</th>
+			                                <th> Подходы </th>
+			                                <th> Веса </th>
+			                            </tr>
+			                        </thead>
+			                        <tbody>
+			                            <tr th:each="entity : ${listExercise}">
+			                                <td th:text="${entity.type.name}"></td>
+			                                <td th:text="${entity.name}"></td>
+			                                <td th:text="${entity.instruction}"></td>
+			                                <td th:text="${entity.countOfRepeat}"></td>
+			                                <td th:text="${entity.secondToRelax}"></td>
+			                                <td th:text="${entity.numberOfApproaches}"></td>
+			                                <td th:text="${entity.workingWeights}"></td>
+			                                <td>
+			                                    <input type="checkbox" name="exercise" th:value="${entity.id}" 
+			                                    th:checked="${#lists.contains(myListExercise,entity.id)}">
+			                                    
+			                                </td>
+			                            </tr>
+			                        </tbody>
+			                    </table>
+			                </div>
+			                		 
+			            </div>
+			        </div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+    
+ <input hidden name="id" th:value="${id}">
+    
+        <div class="container my-2">
+        <div class="card">
+            <div class="row">
+                <div class="card-body col">
+                    <h2 class="text-center"> Питание </h2>
+                    <div th:switch="${listProduct}" class="container my-5">                        
+                        <div class="col-md-12">
+                            <h2 th:case="null"> Записей не найдено </h2>
+                            <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                             <th> Название </th>
+                                            <th> Ккал </th>
+                                            <th> Белки </th>
+                                            <th> Жиры </th>
+                                            <th> Углеводы </th>
+                                            <th> Граммы </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="entity : ${listProduct}">
+                                            <td th:text="${entity.name}"></td>
+                                            <td th:text="${entity.kkal}"></td>
+                                            <td th:text="${entity.protein}"></td>
+                                            <td th:text="${entity.fat}"></td>
+                                            <td th:text="${entity.carbohydrates}"></td>
+                                            <td th:text="${entity.gramms}"></td>                                           
+                                            <td class="btnInTable">
+                                                 <input type="checkbox" name="feeding" th:value="${entity.id}" 
+			                                    th:checked="${#lists.contains(myListProduct,entity.id)}">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="d-flex justify-content-end">
+                            	<input type="submit" value="Сохранить">
+                            	<input type="button" class="btn btn-primary" value = " Назад " onclick="history.back()"/> 
+                            </p>             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</form>
+</section>
+</body>
+ 
+</html>

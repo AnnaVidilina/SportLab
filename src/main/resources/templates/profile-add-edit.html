@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Работа с замерами</title>
+<div th:replace="~{commons :: head}"></div>
+</head>
+
+<body>
+
+	<div th:replace="~{commons :: nav}"></div>
+
+	<h3 class="text-center" th:if="${success}" th:text="${success}"></h3>
+
+	
+	<h2 class="text-center">Работа с замерами</h2>
+
+
+
+<section class="editMeasurement">
+    <div class="container">
+        <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 mx-auto">
+             <form th:action="@{/profile/create}" th:object="${entity}" method="post" class="register ">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label>Обхват груди</label></th>
+                            <td><input th:field="*{chest}" required autocomplete="off" class="" name="chest" type="number" value="" step="0.1"></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Обхват талии</label></th>
+                            <td><input th:field="*{girthWaist}" required autocomplete="off" class="" name="girthWaist" type="number" value="" step="0.1"></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Обхват живота в самой широкой части</label></th>
+                            <td><input th:field="*{girthBelly}" required autocomplete="off" class="" name="girthBelly" type="number" value="" step="0.1"></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Обхват бедер</label></th>
+                            <td><input th:field="*{girthHip}" required autocomplete="off" class="" name="girthHip" type="number" value="" step="0.1"></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Обхват ноги в самой широкой части</label></th>
+                            <td><input th:field="*{girthLeg}" required autocomplete="off" class="" name="girthLeg" type="number" value="" step="0.1"></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <p>
+                <input type="hidden" id="id" th:field="*{id}">
+                <input type="submit" class="btn btn-primary" value=" Отправить ">
+                <input type="button" class="btn btn-primary" value = " Назад " onclick="history.back()"/> 
+            </p>
+            </form>
+        </div>
+        </div>
+    </div>    
+</section>
+	
+	
+</body>
+
+</html>

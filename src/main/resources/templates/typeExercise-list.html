@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <title>Добавить тип упражнений</title>
+	<div th:replace="~{commons :: head}"></div>
+</head>
+ 
+<body>
+
+	<div th:replace="~{commons :: nav}"></div>
+
+    <div class="container my-2">
+    <div class="card">
+    <div class="card-body">
+        <div th:switch="${list}" class="container my-5">
+            <p class="my-5">
+                <a href="/typeExercise/edit" class="btn btn-primary">
+                <i class="fas fa-plus"> Добавить </i></a>
+            </p>
+            <div class="col-md-10">
+                <h2 th:case="null"> Записей не найдено </h2>
+                <div th:case="*">
+                    <table class="table table-striped table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th> Название </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="entity : ${list}">
+                                <td th:text="${entity.name}"></td>
+                                <td>
+                                    <a th:href="@{/typeExercise/edit/{id}(id=${entity.id})}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                        <div>Редактировать </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/typeExercise/delete/{id}(id=${entity.id})}" class="btn btn-primary">
+                                        <i class="fas fa-trash"></i>
+                                        <div>Удалить</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+ 
+</html>

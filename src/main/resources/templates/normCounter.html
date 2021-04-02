@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+	<div th:replace="~{commons :: head}"></div>
+    <title>Счетчик нормы каллорий</title>
+</head>
+<body>
+	<div th:replace="~{commons :: nav}"></div>
+	
+<section class="normCounterInfo mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center">Калорийность — одна из важнейших характеристик продуктов питания, определяющая пищевую ценность того, что мы едим.</h3>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
+                <p>Энергетическая ценность определяется количеством получаемой энергии от компонентов, входящих в состав пищи и зависит от содержания в ней белков, жиров, углеводов и органических кислот. Планируя диету для похудения или набора массы, вы должны точно рассчитать суточную потребность в калориях для полного восстановления организма. В зависимости от поставленной цели соотношение БЖУ будет разным и правильно подобранные пропорции позволят:</p>
+                <ul>
+                    <li>Энергетическая ценность определяется количеством получаемой энергии от компонентов, входящих в состав пищи и зависит от содержания в ней белков, жиров, углеводов и органических кислот. Планируя диету для похудения или набора массы, вы должны точно рассчитать суточную потребность в калориях для полного восстановления организма. В зависимости от поставленной цели соотношение БЖУ будет разным и правильно подобранные пропорции позволят:
+                    <li>снабдить организм достаточным количеством питательных веществ;</li>
+                    <li>эффективно сжигать лишний жир, что особенно актуально для женщин;</li>
+                    <li>мужчинам набрать мышечную массу или подготовить тело для сушке;</li>
+                    <li>добиться нормального баланса и соотношения полезных веществ в организме.</li>
+                </ul>
+            </div>
+         </div>
+    </div>
+</section>
+	
+	
+	<h3 class="text-center" th:if="${BOO}" th:text="'Величина основного обмена веществ: '+${BOO}"></h3>
+	<h3 class="text-center" th:if="${norm}" th:text="'Суточная норма каллорий: '+${norm}"></h3>
+	
+<section class="exercise-list">	
+    <div class="container my-2">
+	    <div class="card">
+		   <div class="row">
+			    <div class="socialsblock" style="padding: 20px;border-radius: 15px;margin: 0 auto;" id="c_form">
+            <h2 class="h2">Для рассчета суточной нормы калорий и БЖУ введите:</h2>
+                <form action="/normCounter" method="post" autocomplete="off">
+                	<input type="text"  name="age" placeholder="Ваш возраст" pattern="[0-9]{2}" style="width: 100%;" required="">
+                	<input type="text" th:value="${height}" name="height" placeholder="Ваш рост (в см.)" pattern="[0-9]{2,3}" style="width: 100%;" required="">
+                	<input type="text" th:value="${weight}" name="weight" placeholder="Ваш вес (в кг.)" pattern="[0-9]{2,3}" style="width: 100%;" required="">
+                    <table class="calc_imt" width="100%">
+                    <tbody><tr>
+                        <td colspan="3"><br><b>Ваш пол:</b></td>
+                      </tr>
+                      <tr>
+                        <td align="center"><input style="margin: 0px 8px 0 0;" type="radio" name="pol" value="1" checked="">Мужчина</td>
+                        <td align="center"><input style="margin: 0px 8px 0 0;" type="radio" name="pol" value="2">Женщина</td>
+                      </tr>
+                      
+                      <tr>
+                        <td colspan="3"><br><b>Ваш образ жизни:</b></td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><input style="margin: 0px 8px 0 0;" type="radio" name="k" value="1.2" checked="">Сидячий образ жизни.</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><input style="margin: 0px 8px 0 0;" type="radio" name="k" value="1.375">Умеренная активность.</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><input style="margin: 0px 8px 0 0;" type="radio" name="k" value="1.4625">Средняя (занятия 3-5 раз в неделю).</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><input style="margin: 0px 8px 0 0;" type="radio" name="k" value="1.550">Активные люди (интенсивные нагрузки).</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><input style="margin: 0px 8px 0 0;" type="radio" name="k" value="1.725">Спортсмены (6-7 раз в неделю).</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" align="center"><input class="btn btn-primary" type="submit" name="submit" value="Узнать БЖУ"></td>
+                      </tr>
+                    </tbody></table>
+                </form>
+                <div align="center"></div>
+                </div>
+		    </div>
+	    </div>
+    </div>
+</section>
+</body>
+ 
+</html>

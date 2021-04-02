@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <title>Добавить/Редактировать</title>
+    <div th:replace="~{commons :: head}"></div>
+</head>
+ 
+<body>
+
+	<div th:replace="~{commons :: nav}"></div>
+
+<h2 class="text-center">Работа с питанием</h2>
+<section class="editFeeding">
+    <div class="container">
+        <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 mx-auto">
+             <form th:action="@{/feeding/create}" th:object="${entity}" method="post" class="register ">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><label>Название</label></th>
+                            <td><input type="text" th:field="*{name}" class="form-control" required/></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Ккал</label></th>
+                            <td><input type="number" th:field="*{kkal}" class="form-control" required step="0.0"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Белки</label></th>
+                            <td><input type="number" th:field="*{protein}" class="form-control" required  step="0.1"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Жиры</label></th>
+                            <td><input type="number" th:field="*{fat}" class="form-control"  required step="0.1"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label>Углеводы</label></th>
+                            <td><input type="number" th:field="*{carbohydrates}" class="form-control" required  step="0.1"/></td>
+                        </tr>
+
+                        <tr>
+                            <th><label>Граммы</label></th>
+                            <td><input type="number" th:field="*{gramms}" class="form-control" required  step="0.1"/></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <p>
+                <input type="hidden" id="id" th:field="*{id}">
+                <input type="submit" class="btn btn-primary" value=" Отправить ">
+                <input type="button" class="btn btn-primary" value = " Назад " onclick="history.back()"/> 
+            </p>
+            </form>
+        </div>
+        </div>
+    </div>    
+</section>    
+    
+<script type="text/javascript">
+$('input').each(function(index, value) {
+	if($(this).val()==0)
+    $(this).val('');
+});
+</script>   
+</body>
+ 
+</html>

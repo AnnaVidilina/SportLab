@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Страница регистрации</title>
+    <div th:replace="~{commons :: head}"></div>
+</head>
+
+<body>
+    <div th:replace="~{commons :: nav}"></div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-8 mx-auto">
+                    <div class="columns ">
+                        <h2>Новый пользователь</h2>
+                        <form action="registration" class="register" method="post">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th><label for="id_username">Логин:</label></th>
+                                        <td><input required autocomplete="off" class="" id="id_username" maxlength="15" name="username" title="Username" type="text"><br><span class="helptext">Будет использоваться для входа.</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="id_password">Пароль:</label></th>
+                                        <td><input required autocomplete="off" class="password" id="id_password" maxlength="30" name="password" title="Пароль:" type="password">                                            
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <th><label >Рост:</label></th>
+                                        <td><input required autocomplete="off" class="" name="height" type="number" ></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label >Вес:</label></th>
+                                        <td><input required autocomplete="off" class="" name="weight" type="number"></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label >Цель:</label></th>
+                                        <td><input required autocomplete="off" class="" name="goal" type="text"></td>
+                                    </tr>
+
+                                    
+                                    <tr>
+                                        <th><label>Обхват груди</label></th>
+                                        <td><input required autocomplete="off" class="" name="chest" type="number" value="chest" step="0.1"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th><label>Обхват талии</label></th>
+                                        <td><input required autocomplete="off" class="" name="girthWaist" type="number" value="girth waist" step="0.1"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th><label>Обхват живота в самой широкой части</label></th>
+                                        <td><input required autocomplete="off" class="" name="girthBelly" type="number" value="girth belly" step="0.1"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th><label>Обхват бедер</label></th>
+                                        <td><input required autocomplete="off" class="" name="girthHip" type="number" value="hip" step="0.1"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th><label>Обхват ноги в самой широкой части</label></th>
+                                        <td><input required autocomplete="off" class="" name="girthLeg" type="number" value="girth leg" step="0.1"></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                            <p>
+			          		<input type="submit" class="button" value="Регистрация">
+			          	</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <title>Добавить/Редактировать</title>
+    <div th:replace="~{commons :: head}"></div>
+</head>
+ 
+<body>
+
+	<div th:replace="~{commons :: nav}"></div>
+
+    <div class="container my-5">
+        <h3>Добавление/Редактировнаие</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/trainingPerDay/create}" th:object="${entity}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label for="trainingProframm" class="col-form-label">Программа</label> 
+								<select th:field="*{trainingProgramm}" id="trainingProgramm" name="trainingProgramm">
+									<option th:each="trainingProgrammOne : ${listTrainingProgramm}" th:value="${trainingProgrammOne.id}" th:text="${trainingProgrammOne}"
+									  th:selected="${trainingProgrammOne==entity.trainingProgramm}"></option>
+								</select>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label">День</label> 
+                                <input type="number" th:field="*{numberOfDay}" class="form-control" id="numberOfDay" placeholder="13" min="1" max="31"/>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label">Упражнения</label> 
+                                <select name="exers" id="exers" multiple="multiple">
+									<option th:each="exerciseOne : ${listExercise}" th:value="${exerciseOne.id}" th:text="${exerciseOne}"
+									  th:selected="${entity.excersices.contains(exerciseOne)}"></option>
+								</select>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label">Диета</label> 
+                                <select name="prods" id="prods" multiple="multiple">
+									<option th:each="productOne : ${listProduct}" th:value="${productOne.id }" th:text="${productOne }"
+									  th:selected="${entity.products.contains(productOne)}"></option>
+								</select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value=" Отправить ">
+                                <input type="button" class="btn btn-primary" value = " Назад " onclick="history.back()"/> 
+                            </div>
+                            <input type="hidden" id="id" th:field="*{id}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+ 
+</html>

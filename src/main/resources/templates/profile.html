@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Профиль</title>
+<div th:replace="~{commons :: head}"></div>
+</head>
+
+<body>
+    <div th:replace="~{commons :: nav}"></div>
+
+    <h3 class="text-center" th:if="${success}" th:text="${success}"></h3>
+
+    <h1 class="text-center" th:text="'Добро пожаловать, '+${user.username}">Добро пожаловать</h1>
+    
+    
+    
+    <section class="profileInfo">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 th:text="'Ваш рост: '+${user.height}"></h4>
+                            <h4 th:text="'Ваш вес: '+${user.weight}"></h4>
+                            <h4 th:text="'Ваша цель: '+${user.goal}"></h4>
+                        </div>
+                    </div>                   
+               </div>
+           </div>           
+        </div>
+    </section>
+        
+        
+<section class="measurement-list"> 
+    <div class="container my-2">
+        <div class="card">
+            <div class="row">
+                <div class="card-body col">
+                    <h2 class="text-center"> Ваши замеры </h2>
+                    <div th:switch="${measurements}" class="container my-5">                        
+                        <div class="col-md-12">
+                            <h2 th:case="null"> Записей не найдено </h2>
+                            <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th>Обхват груди</th>
+                                            <th>Обхват талии</th>
+                                            <th>Обхват живота</th>
+                                            <th>Обхват бедер</th>
+                                            <th>Обхват ноги</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="entity : ${measurements}">
+                                            <td th:text="${entity.chest}"></td>
+                                            <td th:text="${entity.girthWaist}"></td>
+                                            <td th:text="${entity.girthBelly}"></td>
+                                            <td th:text="${entity.girthHip}"></td>
+                                            <td th:text="${entity.girthLeg}"></td>
+                                            <td class="btnInTable">
+                                                <a th:href="@{/profile/edit/{id}(id=${entity.id})}" class="btn btn-primary ">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td class="btnInTable">
+                                                <a th:href="@{/profile/delete/{id}(id=${entity.id})}" class="btn btn-primary">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="d-flex justify-content-end">
+                                <a href="/profile/edit" class="btn btn-primary mx-2">
+                                <i class="fas fa-plus"> Добавить замер </i></a>
+                            </p>             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+<section class="result-list"> 
+    <div class="container my-2">
+        <div class="card  col-6 mx-auto">
+            <div class="row">
+                <div class="card-body col">
+                    <h2 class="text-center"> Календарь тренировок </h2>
+                    <div th:switch="${results}" class="container my-5">                        
+                        <div class="">
+                            <h2 th:case="null"> Записей не найдено </h2>
+                            <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th>Дата</th>
+                                            <th>Подробности</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="entity : ${results}">
+                                            <td th:text="${entity.dateTraining}" ></td>
+                                            <td class="btnInTable">
+                                                <a th:href="@{/result/get/{id}(id=${entity.id})}" class="btn btn-primary ">
+                                                    <i class="fas fa-edit">Перейти</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+        
+</body>
+
+</html>

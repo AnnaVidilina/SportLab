@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <title>Добавить/Редактировать</title>
+    <div th:replace="~{commons :: head}"></div>
+</head>
+ 
+<body>
+
+	<div th:replace="~{commons :: nav}"></div>
+	
+	
+<section class="exercise-add-edit">
+	<div class="container my-5">
+    	<div class="row">
+        	<div class="col-md-8 mx-auto">
+    			<div class="card">
+			        <div class="card-body">
+			    		<h3 class="text-center">Добавление/Редактировнаие</h3>
+			            <div class="">
+			                <form action="#" th:action="@{/exercise/create}" th:object="${entity}" method="post">
+			                	<div class="exercise-form-add-edit">
+			                        <div class="form-group col-md-8">
+			                            <label for="type" class="col-form-label">Тип</label> 
+			                            <select name="typeId">
+										    <option th:each="type : ${typeExercise}" th:value="${type.id}" th:text="${type.name}" 
+										      th:selected="${type==entity.type}"></option>
+										</select>
+	                        		</div>
+			                        <div class="form-group col-md-8">
+			                            <label for="name" class="col-form-label">Название</label> 
+			                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Жим лежа" required/>
+			                        </div>
+			                        <div class="form-group col-md-8">
+			                            <label for="name" class="col-form-label">Инструкция</label>
+			                             <textarea th:field="*{instruction}"  class="form-control" id="instruction" rows="10" cols="60" required></textarea> 
+			                        </div>
+			                        <div class="form-group col-md-8">
+			                            <label for="countOfRepeat" class="col-form-label">Количество повторений</label> 
+			                            <input type="number" th:field="*{countOfRepeat}" class="form-control" id="countOfRepeat" required/>
+			                        </div>
+			                        <div class="form-group col-md-8">
+			                            <label for="secondToRelax" class="col-form-label">Отдых между повторениями (с)</label> 
+			                            <input type="number" th:field="*{secondToRelax}" class="form-control" id="secondToRelax" required/>
+			                        </div>
+			                        
+			                        <div class="form-group col-md-8">
+			                            <label for="secondToRelax" class="col-form-label">Количество подходов</label> 
+			                            <input type="number" th:field="*{numberOfApproaches}" class="form-control" id="secondToRelax" required/>
+			                        </div>
+			                        <div class="form-group col-md-8">
+			                            <label for="secondToRelax" class="col-form-label">Рабочие веса</label> 
+			                            <input type="number" th:field="*{workingWeights}" class="form-control" id="secondToRelax" required/>
+			                        </div>
+			                        <div class="form-group  col-md-6">
+			                            <input type="submit" class="btn btn-primary" value=" Отправить ">
+			                            <input type="button" class="btn btn-primary" value = " Назад " onclick="history.back()"/> 
+		                          </div>
+		                          <input type="hidden" id="id" th:field="*{id}">
+		                 	</div>
+	                	</form>
+              		</div>
+        		</div>
+			</div>
+    	</div>
+	</div>
+</div>
+</section>
+    
+    
+ <script type="text/javascript">
+$('input').each(function(index, value) {
+	if($(this).val()==0)
+    $(this).val('');
+});
+</script>    
+</body>
+ 
+</html>
